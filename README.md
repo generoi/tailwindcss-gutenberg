@@ -28,7 +28,7 @@ Add the otherwise missing alignment components for alignwide and alignfull as we
 
 <img src="https://i.imgur.com/xwCnjVz.gif" width="640" height="400">
 
-This styling depends on the wrapper having a width and then `alingwide` and `alignfull` will break out of it. You might also need to `overflow-x` on the html element.
+This styling depends on the wrapper having a width and then `alingwide` and `alignfull` will break out of it. You might also need to hide `overflow-x` on the html element.
 
 ##### gutenberg.admin
 
