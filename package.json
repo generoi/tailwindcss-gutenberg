@@ -1,0 +1,35 @@
+{
+  "name": "tailwindcss-gutenberg",
+  "description": "Tailwind components and utilities for classes provided by the WordPress Guteneberg editor",
+  "version": "0.0.1",
+  "author": "Oskar Schöldström",
+  "bugs": {
+    "url": "https://github.com/generoi/tailwindcss-gutenberg/issues"
+  },
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "test": "eslint ."
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": "eslint:recommended",
+    "parserOptions": {
+      "ecmaVersion": 9,
+      "sourceType": "module"
+    },
+    "env": {
+      "node": true
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/genero/tailwindcss-gutenberg.git"
+  },
+  "devDependencies": {
+    "eslint": "^5.0.0"
+  },
+  "dependencies": {
+    "chroma-js": "^2.0.3"
+  }
+}
