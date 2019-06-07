@@ -94,9 +94,9 @@ module.exports = {
           // Add a sizing factor to fluidly grow the alignment.
           // Use values between 1.0 and 1.99 where lower means tighter to
           // viewport edge and larger means further.
-          // NOTE when this is used, the values of maxWidth, contentWidth and
-          // gutter all have to be the same as calc() in media queries do not
-          // have good support
+          // NOTE the values of maxWidth, contentWidth and gutter all have
+          // to use the same units for this to work. calc() in media queries
+          // does not have good browser support
           sizer: 1.25,
         },
 
