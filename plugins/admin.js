@@ -3,8 +3,9 @@ module.exports = ({ addComponents, theme }) => {
   const components = {
     // block editor sets the width on a wrapper so unset our own values.
     '[data-align="wide"] .alignwide, [data-align="full"] .alignfull': {
-      'margin-left': [0, '!important'],
-      'margin-right': [0, '!important'],
+      'margin-left': '0 !important',
+      'margin-right': '0 !important',
+      'width': 'auto'
     },
 
     // This is added on front-end but for some reason not back-end.
