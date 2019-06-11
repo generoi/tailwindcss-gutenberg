@@ -1,5 +1,5 @@
 const alignmentStyling = (className, options) => {
-  const scrollbarWidth = options.scrollbarWidth || '15px';
+  const scrollbarWidth = options.scrollbarWidth || '0px';
   const gutter = options.gutter || '0px';
   const sizer = options.sizer || 0;
   const { maxWidth, contentWidth } = options;
@@ -11,21 +11,21 @@ const alignmentStyling = (className, options) => {
       'width': '100vw',
       'max-width': `calc(100vw - ${scrollbarWidth} - (${gutter} * 2))`,
     },
-    // touch devices do not have a scrollbar so remove it from the calculation
-    '@media (pointer: coarse)': {
+  };
+
+  // touch devices do not have a scrollbar so remove it from the calculation
+  if (scrollbarWidth !== '0px') {
+    css['@media (pointer: coarse)'] = {
       [className]: {
         'margin-left': `calc(50% - 50vw + ${gutter})`,
         'margin-right': `calc(50% - 50vw + ${gutter})`,
         'max-width': `calc(100vw - ${gutter} * 2)`,
       },
-    }
-  };
+    };
+  }
 
   if (sizer && contentWidth) {
     const sideWidth = `(100vw - 100%)`;
-    // to be 100% correct we should take the scrollbar into account but it's
-    // such a small overlap that we do not mind
-
     // calc() in media query isnt well supported, especially in safari.
     // `@media (min-width: calc(${contentWidth} + (${gutter} * 2)))`
     // for now we assume the units match.
@@ -41,9 +41,6 @@ const alignmentStyling = (className, options) => {
   }
 
   if (maxWidth) {
-    // to be 100% correct we should take the scrollbar into account but it's
-    // such a small overlap that we do not mind
-
     // calc() in media query isnt well supported, especially in safari.
     // `@media (min-width: calc(${maxWidth} * ${sizer || 1} + ${gutter}))`
     // for now we assume the units match.

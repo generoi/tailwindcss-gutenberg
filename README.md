@@ -73,7 +73,9 @@ module.exports = {
       },
 
       alignments: {
-        // Scrollbar width required for precise alignfull support
+        // Scrollbar width which defaults to macOS 0px but requires overflow-x
+        // hidden on <html>. If that's a dealbreaker set it to 15px and some
+        // users might have a small gutter.
         scrollbarWidth: '15px',
 
         // Content areas default width without alignments required when using
