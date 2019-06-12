@@ -25,7 +25,8 @@ const alignmentStyling = (className, options) => {
   }
 
   if (sizer && contentWidth) {
-    const sideWidth = `(100vw - 100%)`;
+    // Use specific value rather than 100% to work when nested.
+    const sideWidth = `(100vw - ${contentWidth})`;
     // calc() in media query isnt well supported, especially in safari.
     // `@media (min-width: calc(${contentWidth} + (${gutter} * 2)))`
     // for now we assume the units match.
@@ -60,12 +61,54 @@ const alignmentStyling = (className, options) => {
 
 module.exports = ({ addComponents, theme }) => {
   const { alignwide, alignfull, alignleftright, ...defaults } = theme('gutenberg.alignments');
+  const backgroundGutter = defaults.backgroundGutter || '30px';
 
   if (alignwide) {
     addComponents(alignmentStyling('.alignwide', {...defaults, ...alignwide}));
   }
   if (alignfull) {
     addComponents(alignmentStyling('.alignfull', {...defaults, ...alignfull}));
+  }
+
+  // @see https://github.com/WordPress/gutenberg/pull/13964#issuecomment-472562800
+  addComponents({
+    // non-aligned content within alignwide and alignfull should have contentWidth.
+    '.alignwide, .alignfull': {
+      '& :not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright)': {
+        'max-width': defaults.contentWidth || '100%',
+        'margin-left': 'auto',
+        'margin-right': 'auto',
+      }
+    },
+    // nested blocks should be contained within parent, with core only blocks
+    '.alignwide .alignwide, .alignwide .alignfull, .alignfull .alignfull': {
+      'max-width': '100%',
+      'margin-left': 0,
+      'margin-right': 0,
+    },
+    // group and column blocks can contain other aligned blocks.
+    '.wp-block-group:not(.alignwide):not(.alignfull), .wp-block-column': {
+      '& .alignwide, & .alignfull': {
+        'max-width': '100%',
+        'margin-left': 0,
+        'margin-right': 0,
+      },
+    },
+  });
+
+  if (backgroundGutter !== '0px') {
+    addComponents({
+      // Blocks with backgrounds have a padding.
+      '.wp-block-group.has-background': {
+        'padding-left': backgroundGutter,
+        'padding-right': backgroundGutter,
+      },
+      '.wp-block-group.has-background .alignfull': {
+        'margin-left': `-${backgroundGutter}`,
+        'margin-right': `-${backgroundGutter}`,
+        'max-width': `calc(100% + (${backgroundGutter} * 2))`,
+      }
+    });
   }
 
   if (alignleftright) {

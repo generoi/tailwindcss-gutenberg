@@ -88,6 +88,9 @@ module.exports = {
         // Enable with a truthy value
         alignfull: true,
 
+        // Core Group blocks default to 30px side padding.
+        backgroundGutter: '30px',
+
         // Or override the above configurations per alignment type.
         alignwide: {
           // Add a minimum gutter on the left and right of the alignment
