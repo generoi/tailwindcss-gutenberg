@@ -73,12 +73,14 @@ module.exports = ({ addComponents, theme }) => {
   // @see https://github.com/WordPress/gutenberg/pull/13964#issuecomment-472562800
   addComponents({
     // non-aligned content within alignwide and alignfull should have contentWidth.
-    '.alignwide, .alignfull': {
-      '& :not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright)': {
-        'max-width': defaults.contentWidth || '100%',
-        'margin-left': 'auto',
-        'margin-right': 'auto',
-      }
+    '.wp-block-group': {
+      '&.alignwide, &.alignfull': {
+        '& :not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright)': {
+          'max-width': defaults.contentWidth || '100%',
+          'margin-left': 'auto',
+          'margin-right': 'auto',
+        }
+      },
     },
     // nested blocks should be contained within parent, with core only blocks
     '.alignwide .alignwide, .alignwide .alignfull, .alignfull .alignfull': {
