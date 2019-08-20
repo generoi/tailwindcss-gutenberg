@@ -75,7 +75,7 @@ module.exports = ({ addComponents, theme }) => {
     // non-aligned content within alignwide and alignfull should have contentWidth.
     '.wp-block-group': {
       '&.alignwide, &.alignfull': {
-        '& :not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright)': {
+        '& wp-block-group__inner-container > :not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright)': {
           'max-width': defaults.contentWidth || '100%',
           'margin-left': 'auto',
           'margin-right': 'auto',
