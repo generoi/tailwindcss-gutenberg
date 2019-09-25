@@ -27,7 +27,7 @@
     "url": "git://github.com/genero/tailwindcss-gutenberg.git"
   },
   "devDependencies": {
-    "eslint": "^5.0.0"
+    "eslint": "^6.4.0"
   },
   "dependencies": {
     "chroma-js": "^2.0.3"
