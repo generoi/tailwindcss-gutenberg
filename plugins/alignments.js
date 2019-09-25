@@ -60,7 +60,7 @@ const alignmentStyling = (className, options) => {
 };
 
 module.exports = ({ addComponents, theme }) => {
-  const { alignwide, alignfull, alignleftright, ...defaults } = theme('gutenberg.alignments');
+  const { alignwide, alignfull, alignleftright, ...defaults } = theme('gutenberg.alignments', {});
   const backgroundGutter = defaults.backgroundGutter || '30px';
 
   if (alignwide) {
