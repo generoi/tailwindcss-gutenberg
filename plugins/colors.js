@@ -1,5 +1,5 @@
 module.exports = ({ addUtilities, theme, e }) => {
-  const colors = theme('gutenberg.colors');
+  const colors = theme('gutenberg.colors', {});
   const utilities = {};
 
   for (let [slug, color] of Object.entries(colors)) {

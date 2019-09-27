@@ -9,8 +9,8 @@ const pickHighestContrastColor = (foregroundColors, background) => {
 
 module.exports = ({ addComponents, theme, e }) => {
   const components = {};
-  const colors = theme('gutenberg.colors')
-  const foregroundColors = theme('gutenberg.foregroundColors') || ['#000000', '#ffffff'];
+  const colors = theme('gutenberg.colors', {})
+  const foregroundColors = theme('gutenberg.foregroundColors', ['#000000', '#ffffff']);
 
   for (let [slug, color] of Object.entries(colors)) {
     // pick a default text color with highest contrast.

@@ -1,5 +1,5 @@
 module.exports = ({ addUtilities, theme, e }) => {
-  const fontsizes = theme('gutenberg.fontSizes');
+  const fontsizes = theme('gutenberg.fontSizes', {});
   const utilities = {};
 
   for (let [slug, fontSize] of Object.entries(fontsizes)) {
